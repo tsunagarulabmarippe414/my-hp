@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>つながるLab・marippe | 人と人がゆるくつながれる場所</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=M+PLUS+Rounded+1c:wght@400;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --blue:   #0288d1;
+  --sky:    #29b6f6;
+  --light:  #e1f5fe;
+  --foam:   #f0f8ff;
+  --deep:   #01579b;
+  --coral:  #ff7043;
+  --white:  #ffffff;
+  --dark:   #0d2b3e;
+  --text:   #1a3a52;
+  --muted:  #5a8aa8;
+  --border: #b3d9f0;
+  --rounded:'M PLUS Rounded 1c', 'Noto Sans JP', sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+body { font-family: var(--rounded); color: var(--text); background: #fff; overflow-x: hidden; }
+
+/* ====== 貝殻デコ ====== */
+.shell-deco {
+  position: absolute; pointer-events: none; user-select: none;
+  opacity: 0.07; font-size: 3rem;
+  animation: drift 10s ease-in-out infinite;
+}
+@keyframes drift {
+  0%,100% { transform: rotate(-10deg) scale(1); }
+  50%      { transform: rotate(10deg) scale(1.05); }
+}
+
+/* ====== NAV ====== */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  height: 64px;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(16px);
+  border-bottom: 2px solid var(--light);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 5%;
+}
+.nav-logo {
+  font-size: 1rem; font-weight: 900; color: var(--blue);
+  display: flex; align-items: center; gap: 0.4rem;
+}
+.nav-links { display: flex; gap: 1.8rem; list-style: none; }
+.nav-links a { text-decoration: none; color: var(--text); font-size: 0.86rem; font-weight: 700; transition: color 0.2s; }
+.nav-links a:hover { color: var(--blue); }
+.nav-cta {
+  background: var(--blue); color: #fff;
+  padding: 0.5rem 1.4rem; border-radius: 100px;
+  text-decoration: none; font-size: 0.85rem; font-weight: 900;
+  transition: opacity 0.2s, transform 0.2s; white-space: nowrap;
+}
+.nav-cta:hover { opacity: 0.85; transform: scale(1.03); }
+
+/* ====== HERO ====== */
+.hero {
+  min-height: 100vh;
+  background:
+    url('https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=1920&q=80') center center / cover no-repeat;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center;
+  padding: 110px 6% 100px;
+  position: relative; overflow: hidden;
+}
+.hero-wave-bottom {
+  position: absolute; bottom: -1px; left: 0; right: 0; line-height: 0;
+}
+.hero-wave-bottom svg { display: block; width: 100%; }
+
+/* 座布団（テキスト背景） */
+.hero-content {
+  background: rgba(255,255,255,0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1.5px solid rgba(255,255,255,0.7);
+  border-radius: 28px;
+  padding: 2.8rem 3.5rem;
+  max-width: 640px;
+  position: relative; z-index: 1;
+  box-shadow: 0 8px 40px rgba(0,80,140,0.15);
+}
+.hero-badge {
+  display: inline-block;
+  background: rgba(2,136,209,0.18);
+  border: 1.5px solid rgba(2,136,209,0.4);
+  color: var(--dark); font-size: 0.8rem; font-weight: 900;
+  padding: 0.3em 1.4em; border-radius: 100px;
+  letter-spacing: 0.1em; margin-bottom: 1.2rem;
+}
+.hero h1 {
+  font-size: clamp(1.7rem, 5vw, 3.2rem); font-weight: 900;
+  color: var(--dark); line-height: 1.4; margin-bottom: 1rem;
+}
+.hero h1 em { font-style: normal; color: var(--blue); }
+.hero-sub {
+  font-size: clamp(0.9rem, 2.2vw, 1.05rem);
+  color: var(--text); line-height: 2;
+  margin-bottom: 2rem; opacity: 0.9;
+}
+.hero-buttons {
+  display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center;
+}
+.btn-main {
+  background: var(--blue); color: #fff;
+  padding: 0.9rem 2.2rem; border-radius: 100px;
+  text-decoration: none; font-weight: 900; font-size: 1rem;
+  box-shadow: 0 8px 24px rgba(2,136,209,0.35);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.btn-main:hover { transform: translateY(-3px); box-shadow: 0 14px 36px rgba(2,136,209,0.45); }
+.btn-line {
+  background: #06c755; color: #fff;
+  padding: 0.9rem 2.2rem; border-radius: 100px;
+  text-decoration: none; font-weight: 900; font-size: 1rem;
+  box-shadow: 0 8px 24px rgba(6,199,85,0.35);
+  transition: transform 0.2s, opacity 0.2s;
+}
+.btn-line:hover { transform: translateY(-3px); opacity: 0.88; }
+
+.hero-scroll {
+  position: absolute; bottom: 110px; left: 50%; transform: translateX(-50%);
+  color: rgba(255,255,255,0.85); font-size: 0.75rem;
+  z-index: 1; text-align: center; animation: bounce 2s ease-in-out infinite;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.3);
+}
+.hero-scroll::after { content: '▼'; display: block; }
+@keyframes bounce {
+  0%,100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(8px); }
+}
+
+/* ====== SECTION BASE ====== */
+section { padding: 80px 5%; position: relative; }
+.sec-label {
+  text-align: center; font-size: 0.75rem; font-weight: 900;
+  letter-spacing: 0.2em; color: var(--sky); margin-bottom: 0.4rem; text-transform: uppercase;
+}
+.sec-title {
+  text-align: center; font-size: clamp(1.5rem, 3.8vw, 2.2rem);
+  font-weight: 900; color: var(--dark); line-height: 1.4; margin-bottom: 0.6rem;
+}
+.divider {
+  width: 48px; height: 4px; border-radius: 100px;
+  background: linear-gradient(90deg, var(--sky), var(--blue));
+  margin: 0.5rem auto 1.5rem;
+}
+.sec-sub {
+  text-align: center; color: var(--muted); font-size: 0.97rem;
+  line-height: 2; max-width: 580px; margin: 0 auto 3rem;
+}
+
+/* ====== INTRO ====== */
+.intro { background: #fff; overflow: hidden; }
+.intro-card {
+  max-width: 700px; margin: 0 auto;
+  background: var(--foam); border-radius: 28px; padding: 3rem 3.5rem;
+  border: 2px solid var(--border);
+  position: relative;
+}
+.intro-card::before {
+  content: '🐚';
+  position: absolute; top: -18px; left: 50%; transform: translateX(-50%);
+  font-size: 2.2rem;
+}
+/* 貝殻デコ in intro */
+.intro-card .s1 { bottom: -10px; right: 20px; font-size:2rem; animation-delay:1s; }
+.intro-card .s2 { top: 20px; right: -10px; font-size:1.8rem; animation-delay:3s; }
+.intro-msg { font-size: 1rem; line-height: 2.2; color: var(--text); }
+.intro-msg .quote {
+  font-size: 1.1rem; font-weight: 700; color: var(--blue);
+  background: var(--light); border-left: 4px solid var(--sky);
+  padding: 1rem 1.4rem; border-radius: 0 12px 12px 0;
+  margin: 1.2rem 0; display: block; font-style: italic;
+}
+.intro-name {
+  margin-top: 2rem; text-align: right;
+  font-size: 0.9rem; color: var(--muted); font-weight: 700;
+}
+.intro-name strong { color: var(--blue); font-size: 1.05rem; }
+
+/* ====== ACTIVITIES ====== */
+.activities { background: var(--foam); overflow: hidden; }
+.act-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 1.4rem; max-width: 960px; margin: 0 auto;
+}
+.act-card {
+  border-radius: 20px; overflow: hidden;
+  box-shadow: 0 4px 24px rgba(0,80,140,0.08);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.act-card:hover { transform: translateY(-6px); box-shadow: 0 16px 48px rgba(0,80,140,0.15); }
+.act-thumb {
+  height: 140px; display: flex; align-items: center;
+  justify-content: center; font-size: 3.8rem;
+}
+.t1 { background: linear-gradient(135deg, #e1f5fe, #81d4fa); }
+.t2 { background: linear-gradient(135deg, #e0f7fa, #80deea); }
+.t3 { background: linear-gradient(135deg, #fff8e1, #ffe082); }
+.t4 { background: linear-gradient(135deg, #fce4ec, #f48fb1); }
+.t5 { background: linear-gradient(135deg, #ede7f6, #b39ddb); }
+.act-body { padding: 1.3rem 1.5rem 1.5rem; background: #fff; }
+.act-tag {
+  font-size: 0.7rem; font-weight: 900; letter-spacing: 0.1em;
+  color: var(--sky); text-transform: uppercase; margin-bottom: 0.3rem;
+}
+.act-card h3 { font-size: 0.98rem; font-weight: 900; color: var(--dark); margin-bottom: 0.3rem; }
+.act-card p  { font-size: 0.84rem; color: var(--muted); line-height: 1.8; }
+
+/* ====== STYLE ====== */
+.style-sec { background: #fff; overflow: hidden; }
+.style-inner {
+  max-width: 720px; margin: 0 auto;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.2rem;
+}
+.style-item {
+  background: var(--foam); border-radius: 18px; padding: 1.8rem 1.4rem;
+  text-align: center; border: 2px solid var(--border);
+  transition: border-color 0.2s, transform 0.2s;
+}
+.style-item:hover { border-color: var(--sky); transform: translateY(-4px); }
+.style-emoji { font-size: 2.4rem; margin-bottom: 0.7rem; }
+.style-item h4 { font-size: 0.95rem; font-weight: 900; color: var(--dark); margin-bottom: 0.3rem; }
+.style-item p  { font-size: 0.83rem; color: var(--muted); line-height: 1.75; }
+
+/* ====== VOICE ====== */
+.voices { background: var(--foam); overflow: hidden; }
+
+/* ====== JOIN ====== */
+.join { background: #fff; overflow: hidden; }
+.join-box {
+  max-width: 760px; margin: 0 auto;
+  background: var(--foam); border-radius: 28px; padding: 3rem;
+  border: 2px solid var(--border);
+  box-shadow: 0 8px 40px rgba(2,136,209,0.08);
+  position: relative; overflow: hidden;
+}
+.join-box .s3 { bottom: -15px; left: 10px; font-size: 2.5rem; animation-delay: 2s; }
+.join-box .s4 { top: 10px; right: -5px; font-size: 2rem; animation-delay: 0.5s; }
+.join-steps { display: flex; flex-wrap: wrap; gap: 1.2rem; margin: 2rem 0; }
+.join-step {
+  flex: 1; min-width: 180px; text-align: center;
+  background: #fff; border-radius: 16px; padding: 1.4rem 1rem;
+  border: 2px solid var(--border);
+}
+.step-num {
+  width: 38px; height: 38px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--sky), var(--blue));
+  color: #fff; font-weight: 900; font-size: 0.95rem;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 0.7rem;
+}
+.join-step h4 { font-size: 0.94rem; font-weight: 900; color: var(--dark); margin-bottom: 0.3rem; }
+.join-step p  { font-size: 0.82rem; color: var(--muted); line-height: 1.75; }
+.join-note {
+  font-size: 0.85rem; color: var(--muted); line-height: 2.1;
+  margin-top: 1.5rem; padding-top: 1.5rem;
+  border-top: 1px dashed var(--border);
+}
+.join-cta { text-align: center; margin-top: 2rem; }
+.btn-line-big {
+  display: inline-flex; align-items: center; gap: 0.7rem;
+  background: #06c755; color: #fff;
+  padding: 1.1rem 3rem; border-radius: 100px;
+  text-decoration: none; font-weight: 900; font-size: 1.1rem;
+  box-shadow: 0 8px 30px rgba(6,199,85,0.4);
+  transition: transform 0.2s, opacity 0.2s;
+}
+.btn-line-big:hover { transform: translateY(-3px); opacity: 0.88; }
+
+/* ====== CONTACT ====== */
+.contact {
+  background: linear-gradient(155deg, #0288d1 0%, #01579b 100%);
+  padding: 80px 5%; text-align: center; position: relative; overflow: hidden;
+}
+.contact::before {
+  content: '';
+  position: absolute; top: -2px; left: 0; right: 0; height: 70px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 70'%3E%3Cpath fill='%23ffffff' d='M0,35L80,40C160,45,320,55,480,57C640,59,800,53,960,45C1120,37,1280,33,1360,31L1440,29L1440,0L0,0Z'/%3E%3C/svg%3E") no-repeat top / cover;
+}
+/* 貝殻デコ in contact */
+.contact .sc1 { top: 15%; left: 4%;  font-size:3rem; animation-delay:0s; opacity:0.1; }
+.contact .sc2 { top: 30%; right:5%; font-size:2rem; animation-delay:2s; opacity:0.1; }
+.contact .sc3 { bottom:15%; left:8%; font-size:2.5rem; animation-delay:1s; opacity:0.1; }
+.contact-inner { position: relative; z-index: 1; }
+.contact .sec-label { color: rgba(255,255,255,0.6); }
+.contact .sec-title { color: #fff; }
+.contact .sec-sub   { color: rgba(255,255,255,0.82); }
+.contact .divider   { background: linear-gradient(90deg, #b3e5fc, #fff); }
+.sns-grid {
+  display: flex; flex-wrap: wrap; justify-content: center;
+  gap: 1rem; margin-top: 2.5rem;
+}
+.sns-card {
+  display: flex; align-items: center; gap: 0.7rem;
+  background: rgba(255,255,255,0.15);
+  border: 2px solid rgba(255,255,255,0.35);
+  color: #fff; padding: 0.9rem 2rem; border-radius: 100px;
+  text-decoration: none; font-weight: 700; font-size: 0.95rem;
+  transition: background 0.2s, transform 0.2s;
+}
+.sns-card:hover { background: rgba(255,255,255,0.28); transform: translateY(-3px); }
+.sns-line { background: #06c755; border-color: #06c755; }
+.sns-line:hover { background: #05b34c; opacity: 0.9; }
+
+/* ====== FOOTER ====== */
+footer {
+  background: var(--dark); color: rgba(255,255,255,0.45);
+  padding: 2.5rem 5% 2rem; text-align: center;
+}
+.footer-logo { color: rgba(255,255,255,0.85); font-size: 1rem; font-weight: 900; margin-bottom: 0.5rem; }
+footer p { font-size: 0.78rem; line-height: 1.9; }
+footer a { color: #81d4fa; text-decoration: none; }
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .intro-card { padding: 2.5rem 1.6rem; }
+  .join-box { padding: 2rem 1.4rem; }
+  .hero-content { padding: 2rem 1.6rem; }
+}
+@media (max-width: 480px) {
+  .hero-buttons { flex-direction: column; align-items: center; }
+  .btn-main, .btn-line { width: 100%; max-width: 280px; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    🐚 つながるLab・marippe
+  </div>
+  <ul class="nav-links">
+    <li><a href="#intro">想い</a></li>
+    <li><a href="#activities">活動内容</a></li>
+    <li><a href="#voices">みんなの声</a></li>
+    <li><a href="#join">参加する</a></li>
+  </ul>
+  <a href="#join" class="nav-cta">💬 LINEで参加</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">🐚 つながるLab・marippe</div>
+    <h1>
+      別々にいても、<br>
+      <em>どこかでつながっていたい。</em>
+    </h1>
+    <p class="hero-sub">
+      人と人がゆるくつながれる小さなコミュニティ。<br>
+      お仕事のこと、好きなこと、やってみたいこと——<br>
+      なんでも気軽に話せる場所です😊
+    </p>
+    <div class="hero-buttons">
+      <a href="#intro" class="btn-main">ラボのことを知る</a>
+      <a href="https://line.me/ti/g2/xXQQ5bzq2DNdahemBZT44GRfRfSnOF1EPEwZoQ?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" class="btn-line">💬 LINEで参加する</a>
+    </div>
+  </div>
+
+  <div class="hero-scroll">scroll</div>
+
+  <div class="hero-wave-bottom">
+    <svg viewBox="0 0 1440 90" xmlns="http://www.w3.org/2000/svg">
+      <path fill="#e1f5fe" d="M0,50L80,55C160,60,320,70,480,68C640,66,800,52,960,46C1120,40,1280,43,1360,45L1440,47L1440,90L0,90Z"/>
+      <path fill="#ffffff" d="M0,68L80,70C160,72,320,76,480,77C640,78,800,73,960,68C1120,63,1280,60,1360,59L1440,58L1440,90L0,90Z"/>
+    </svg>
+  </div>
+</section>
+
+<!-- INTRO -->
+<section class="intro" id="intro">
+  <!-- 貝殻デコ -->
+  <span class="shell-deco" style="position:absolute;top:8%;right:3%;font-size:3rem;animation-delay:0s;">🐚</span>
+  <span class="shell-deco" style="position:absolute;bottom:10%;left:2%;font-size:2.5rem;animation-delay:2s;">🦀</span>
+  <span class="shell-deco" style="position:absolute;top:30%;left:1%;font-size:2rem;animation-delay:4s;">🐠</span>
+
+  <p class="sec-label">Hello</p>
+  <h2 class="sec-title">marippe からのご挨拶</h2>
+  <div class="divider"></div>
+
+  <div class="intro-card">
+    <div class="intro-msg">
+      <p>こんにちは😊</p>
+      <br>
+      <p>最近、</p>
+      <span class="quote">
+        「別々にいても、どこかでつながっていたいな」
+      </span>
+      <p>と思うことが増えてきて🤭</p>
+      <br>
+      <p>小さなコミュニティ<strong>「つながるLab」</strong>を始めてみようと思っています🐚</p>
+      <br>
+      <p>人と人がゆるくつながれる場所を目指しています😊</p>
+      <br>
+      <p>お仕事のこと、好きなこと、やってみたいこと、地域のこと、日常のことなど気軽に話せるコミュニティです✨</p>
+      <br>
+      <p>無理なく、自分のペースで。<br>オンラインでも、リアルでも、無理なく参加できる感じです✨</p>
+      <br>
+      <p>まずはLINEグループからゆるく始めてみます😊<br>興味ある方いたら、気軽に連絡ください✨</p>
+    </div>
+    <div class="intro-name">
+      <strong>marippe</strong><br>
+      つながるLab 主宰
+    </div>
+  </div>
+</section>
+
+<!-- ACTIVITIES -->
+<section class="activities" id="activities">
+  <!-- 貝殻デコ -->
+  <span class="shell-deco" style="position:absolute;top:5%;left:2%;font-size:3.5rem;animation-delay:1s;">🐚</span>
+  <span class="shell-deco" style="position:absolute;bottom:8%;right:3%;font-size:2.5rem;animation-delay:3s;">🌊</span>
+
+  <p class="sec-label">Activities</p>
+  <h2 class="sec-title">こんなことやっていきます✨</h2>
+  <div class="divider"></div>
+  <p class="sec-sub">少しずつ、ゆっくり、みんなで育てていくラボです🐚</p>
+
+  <div class="act-grid">
+    <div class="act-card">
+      <div class="act-thumb t1">💬</div>
+      <div class="act-body">
+        <p class="act-tag">Community</p>
+        <h3>LINEグループでつながる</h3>
+        <p>まずはLINEグループから。日常のことを気軽に投稿して、ゆるくつながりましょう。</p>
+      </div>
+    </div>
+    <div class="act-card">
+      <div class="act-thumb t2">🍽️</div>
+      <div class="act-body">
+        <p class="act-tag">Lunch & Meet</p>
+        <h3>ランチ会・交流会</h3>
+        <p>つながるLabのメンバーが運営するお店でランチ会や交流会を開催。食べながら自然とつながれます。</p>
+      </div>
+    </div>
+    <div class="act-card">
+      <div class="act-thumb t3">🏪</div>
+      <div class="act-body">
+        <p class="act-tag">Shop Introduction</p>
+        <h3>お店・活動の紹介</h3>
+        <p>頑張っているお店や活動をコミュニティで紹介。知ってもらう、つながる、応援する輪を広げます。</p>
+      </div>
+    </div>
+    <div class="act-card">
+      <div class="act-thumb t4">🎬</div>
+      <div class="act-body">
+        <p class="act-tag">PR Video</p>
+        <h3>PR動画紹介</h3>
+        <p>お店や活動のPR動画を制作・紹介。見た人がファンになる、そんなつながりを作ります。</p>
+      </div>
+    </div>
+    <div class="act-card">
+      <div class="act-thumb t5">🎉</div>
+      <div class="act-body">
+        <p class="act-tag">Event</p>
+        <h3>イベント</h3>
+        <p>みんなで集まって楽しむイベントをどんどん開催予定。内容はお楽しみ😊</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STYLE -->
+<section class="style-sec">
+  <!-- 貝殻デコ -->
+  <span class="shell-deco" style="position:absolute;top:10%;right:2%;font-size:2.5rem;animation-delay:2s;">🐚</span>
+  <span class="shell-deco" style="position:absolute;bottom:5%;left:3%;font-size:3rem;animation-delay:0.5s;">🦀</span>
+
+  <p class="sec-label">Our Style</p>
+  <h2 class="sec-title">つながるLabのスタイル</h2>
+  <div class="divider"></div>
+
+  <div class="style-inner">
+    <div class="style-item">
+      <div class="style-emoji">🐚</div>
+      <h4>ゆるくていい</h4>
+      <p>完璧に参加しなくていい。のぞくだけでも大歓迎。</p>
+    </div>
+    <div class="style-item">
+      <div class="style-emoji">🐢</div>
+      <h4>自分のペースで</h4>
+      <p>急がなくていい。無理しなくていい。ゆっくりでいい。</p>
+    </div>
+    <div class="style-item">
+      <div class="style-emoji">📱</div>
+      <h4>オンラインでも</h4>
+      <p>遠くにいても大丈夫。LINEでいつでもつながれます。</p>
+    </div>
+    <div class="style-item">
+      <div class="style-emoji">🤗</div>
+      <h4>リアルでも</h4>
+      <p>直接会える機会もどんどん作っていきます。</p>
+    </div>
+  </div>
+</section>
+
+<!-- VOICES -->
+<section class="voices" id="voices">
+  <!-- 貝殻デコ -->
+  <span class="shell-deco" style="position:absolute;top:8%;left:4%;font-size:2.8rem;animation-delay:1.5s;">🐠</span>
+
+  <p class="sec-label">Voice</p>
+  <h2 class="sec-title">参加してくれた方の声😊</h2>
+  <div class="divider"></div>
+  <p class="sec-sub" style="margin-top:0;">準備中です。もうすぐ掲載します😊</p>
+</section>
+
+<!-- JOIN -->
+<section class="join" id="join">
+  <p class="sec-label">Join Us</p>
+  <h2 class="sec-title">参加方法はとっても簡単😊</h2>
+  <div class="divider"></div>
+  <p class="sec-sub">まずはLINEグループからゆるく始めてみましょう🐚</p>
+
+  <div class="join-box">
+    <span class="shell-deco" style="bottom:-15px;left:10px;font-size:2.5rem;animation-delay:2s;">🐚</span>
+    <span class="shell-deco" style="top:10px;right:-5px;font-size:2rem;animation-delay:0.5s;">🌊</span>
+
+    <div class="join-steps">
+      <div class="join-step">
+        <div class="step-num">1</div>
+        <h4>marippe に連絡</h4>
+        <p>InstagramのDMかLINEから「参加したい」と気軽に連絡してください。</p>
+      </div>
+      <div class="join-step">
+        <div class="step-num">2</div>
+        <h4>LINEグループへ</h4>
+        <p>LINEグループにご招待します。自己紹介はしてもしなくてもOK！</p>
+      </div>
+      <div class="join-step">
+        <div class="step-num">3</div>
+        <h4>ゆるくつながる</h4>
+        <p>気が向いたときに投稿して、気が向いたときにイベントに参加。それだけ！</p>
+      </div>
+    </div>
+
+    <p class="join-note">
+      🐚 参加費は無料です（有料イベントは事前にご案内します）<br>
+      🐚 一人参加、大歓迎です。むしろそういう方がほとんどです！<br>
+      🐚 年齢・性別・職業は一切関係なし。気軽な気持ちで😊
+    </p>
+
+    <div class="join-cta">
+      <a href="https://line.me/ti/g2/xXQQ5bzq2DNdahemBZT44GRfRfSnOF1EPEwZoQ?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" class="btn-line-big">
+        💬 LINEオープンチャットに参加する
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <span class="shell-deco sc1">🐚</span>
+  <span class="shell-deco sc2">🌊</span>
+  <span class="shell-deco sc3">🦀</span>
+
+  <div class="contact-inner">
+    <p class="sec-label">Contact & SNS</p>
+    <h2 class="sec-title">どこからでもつながれます🐚</h2>
+    <div class="divider"></div>
+    <p class="sec-sub">気軽にフォロー・メッセージしてください😊</p>
+
+    <div class="sns-grid">
+      <a href="https://line.me/ti/g2/xXQQ5bzq2DNdahemBZT44GRfRfSnOF1EPEwZoQ?utm_source=invitation&utm_medium=link_copy&utm_campaign=default" target="_blank" class="sns-card sns-line">💬 LINEオープンチャット</a>
+      <a href="#" class="sns-card">📸 Instagram</a>
+      <a href="mailto:touma20issa30@gmail.com" class="sns-card">✉️ お問い合わせ</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p class="footer-logo">🐚 つながるLab・marippe</p>
+  <p>人と人がゆるくつながれる小さなコミュニティ</p>
+  <p style="margin-top:0.5rem;">
+    <a href="privacy.html">プライバシーポリシー</a> ／ <a href="mailto:touma20issa30@gmail.com">お問い合わせ</a>
+  </p>
+  <p style="margin-top:1rem;">&copy; 2026 つながるLab・marippe</p>
+</footer>
+
+</body>
+</html>
