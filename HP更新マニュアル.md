@@ -15,9 +15,8 @@
 ## 🌐 公開後のURL（GitHub Pages）
 
 ```
-https://【GitHubユーザー名】.github.io/my-hp/
+https://tsunagarulabmarippe414.github.io/my-hp/
 ```
-※ GitHubアカウント作成後に確定します
 
 ---
 
