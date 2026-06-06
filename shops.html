@@ -14,8 +14,6 @@
 }
 html { scroll-behavior: smooth; }
 body { font-family: var(--rounded); color: var(--text); background: #fff; }
-
-/* NAV */
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 200;
   height: 64px; background: rgba(255,255,255,0.95); backdrop-filter: blur(16px);
@@ -23,115 +21,50 @@ nav {
   display: flex; align-items: center; justify-content: space-between; padding: 0 5%;
 }
 .nav-logo { font-size: 1rem; font-weight: 900; color: var(--blue); text-decoration: none; }
-.nav-back {
-  background: var(--light); color: var(--blue);
-  padding: 0.5rem 1.4rem; border-radius: 100px;
-  text-decoration: none; font-size: 0.85rem; font-weight: 700;
-  transition: background 0.2s;
-}
+.nav-back { background: var(--light); color: var(--blue); padding: 0.5rem 1.4rem; border-radius: 100px; text-decoration: none; font-size: 0.85rem; font-weight: 700; transition: background 0.2s; }
 .nav-back:hover { background: var(--border); }
-
-/* HERO */
-.page-hero {
-  background: linear-gradient(155deg, #e1f5fe 0%, #b3e5fc 60%, #81d4fa 100%);
-  padding: 110px 5% 60px; text-align: center;
-}
-.page-hero .label {
-  font-size: 0.75rem; font-weight: 900; letter-spacing: 0.2em;
-  color: var(--blue); text-transform: uppercase; margin-bottom: 0.6rem;
-}
+.page-hero { background: linear-gradient(155deg, #e1f5fe 0%, #b3e5fc 60%, #81d4fa 100%); padding: 110px 5% 60px; text-align: center; }
+.page-hero .label { font-size: 0.75rem; font-weight: 900; letter-spacing: 0.2em; color: var(--blue); text-transform: uppercase; margin-bottom: 0.6rem; }
 .page-hero h1 { font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 900; color: var(--dark); margin-bottom: 0.6rem; }
 .page-hero p  { font-size: 0.9rem; color: var(--muted); line-height: 1.8; }
-
-/* CONTAINER */
 .container { max-width: 800px; margin: 0 auto; padding: 60px 5% 80px; }
-
-/* SECTION TITLE */
-.section-title {
-  font-size: 1rem; font-weight: 900; color: var(--dark);
-  margin: 3rem 0 1.2rem; padding-bottom: 0.6rem;
-  border-bottom: 3px solid var(--light);
-  display: flex; align-items: center; gap: 0.5rem;
-}
-
-/* SHOP CARD */
-.shop-card {
-  display: block; text-decoration: none;
-  background: var(--foam); border: 2px solid var(--border);
-  border-radius: 20px; padding: 1.8rem 2rem;
-  margin-bottom: 1.4rem;
-  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
-}
+.section-title { font-size: 1rem; font-weight: 900; color: var(--dark); margin: 3rem 0 1.2rem; padding-bottom: 0.6rem; border-bottom: 3px solid var(--light); display: flex; align-items: center; gap: 0.5rem; }
+.shop-card { display: block; text-decoration: none; background: var(--foam); border: 2px solid var(--border); border-radius: 20px; padding: 1.8rem 2rem; margin-bottom: 1.4rem; transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s; }
 .shop-card:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(2,136,209,0.15); border-color: var(--sky); }
-.shop-tag {
-  display: inline-block; font-size: 0.7rem; font-weight: 900;
-  letter-spacing: 0.15em; color: var(--blue);
-  background: var(--light); border-radius: 100px;
-  padding: 0.25em 1em; margin-bottom: 0.8rem; text-transform: uppercase;
-}
+.shop-tag { display: inline-block; font-size: 0.7rem; font-weight: 900; letter-spacing: 0.15em; color: var(--blue); background: var(--light); border-radius: 100px; padding: 0.25em 1em; margin-bottom: 0.8rem; text-transform: uppercase; }
 .shop-name { font-size: 1.1rem; font-weight: 900; color: var(--dark); margin-bottom: 0.5rem; }
 .shop-desc { font-size: 0.87rem; color: var(--muted); line-height: 1.9; margin-bottom: 1rem; }
-.shop-url {
-  font-size: 0.8rem; color: var(--blue); font-weight: 700;
-  display: flex; align-items: center; gap: 0.3rem;
-}
+.shop-url { font-size: 0.8rem; color: var(--blue); font-weight: 700; display: flex; align-items: center; gap: 0.3rem; }
 .shop-url::after { content: '→'; }
-
-/* VIDEO CARD */
-.video-card {
-  background: var(--foam); border: 2px solid var(--border);
-  border-radius: 20px; overflow: hidden;
-  margin-bottom: 1.4rem;
-}
-.video-wrap {
-  position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;
-}
-.video-wrap iframe {
-  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-  border: none;
-}
-.video-info { padding: 1.2rem 1.6rem; }
-.video-title { font-size: 0.95rem; font-weight: 900; color: var(--dark); margin-bottom: 0.3rem; }
-.video-desc  { font-size: 0.83rem; color: var(--muted); line-height: 1.8; }
-
-/* COMING SOON */
-.coming-soon {
-  text-align: center; padding: 3rem 2rem;
-  background: var(--foam); border: 2px dashed var(--border);
-  border-radius: 20px; margin-bottom: 1.4rem;
-}
+.insta-toggle { margin-top: 1rem; border-top: 1px solid var(--border); padding-top: 1rem; }
+.insta-toggle-btn { display: inline-flex; align-items: center; gap: 0.5rem; background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: #fff; font-size: 0.85rem; font-weight: 700; padding: 0.55em 1.4em; border-radius: 100px; border: none; cursor: pointer; transition: opacity 0.2s; }
+.insta-toggle-btn:hover { opacity: 0.85; }
+.insta-toggle-btn .arrow { transition: transform 0.3s; display: inline-block; }
+.insta-toggle-btn.open .arrow { transform: rotate(180deg); }
+.insta-grid { display: none; grid-template-columns: repeat(3, 1fr); gap: 0.8rem; margin-top: 1rem; }
+.insta-grid.open { display: grid; }
+@media (max-width: 600px) { .insta-grid { grid-template-columns: 1fr; } }
+.yt-btn { display: inline-flex; align-items: center; gap: 0.5rem; background: #ff0000; color: #fff; font-size: 0.85rem; font-weight: 700; padding: 0.55em 1.4em; border-radius: 100px; text-decoration: none; margin-top: 0.8rem; }
+.yt-btn:hover { opacity: 0.85; }
+.coming-soon { text-align: center; padding: 3rem 2rem; background: var(--foam); border: 2px dashed var(--border); border-radius: 20px; margin-bottom: 1.4rem; }
 .coming-soon p { color: var(--muted); font-size: 0.9rem; line-height: 2; }
-
-/* FOOTER */
-footer {
-  background: var(--dark); color: rgba(255,255,255,0.45);
-  padding: 2rem 5%; text-align: center; font-size: 0.78rem;
-}
+footer { background: var(--dark); color: rgba(255,255,255,0.45); padding: 2rem 5%; text-align: center; font-size: 0.78rem; }
 .footer-logo { color: rgba(255,255,255,0.85); font-weight: 900; margin-bottom: 0.4rem; }
 footer a { color: #81d4fa; text-decoration: none; }
-
-@media (max-width: 480px) {
-  .shop-card { padding: 1.4rem 1.2rem; }
-  .video-info { padding: 1rem 1.2rem; }
-}
+@media (max-width: 480px) { .shop-card { padding: 1.4rem 1.2rem; } }
 </style>
 </head>
 <body>
-
 <nav>
   <a href="index.html" class="nav-logo">🐚 つながるLab・marippe</a>
   <a href="index.html" class="nav-back">← トップに戻る</a>
 </nav>
-
 <div class="page-hero">
   <p class="label">Shop Introduction</p>
   <h1>🏪 お店・活動の紹介</h1>
   <p>つながるLabのメンバーや仲間のお店・活動をご紹介します。<br>ぜひ足を運んでみてください✨</p>
 </div>
-
 <div class="container">
-
-  <!-- ========== お店 ========== -->
   <p class="section-title">🏪 お店紹介</p>
 
   <a href="https://thegoldcushionclub.com/" target="_blank" class="shop-card">
@@ -139,31 +72,40 @@ footer a { color: #81d4fa; text-decoration: none; }
     <p class="shop-name">THE GOLD CUSHION CLUB</p>
     <p class="shop-desc">こだわりのゴルフ用品が揃うセレクトショップ。本物志向のゴルファーに選ばれるお店です。</p>
     <span class="shop-url">thegoldcushionclub.com</span>
+    <div class="insta-toggle" onclick="event.stopPropagation()">
+      <button class="insta-toggle-btn" onclick="toggleInsta(this, event)">
+        📸 Instagramはこちらから <span class="arrow">▼</span>
+      </button>
+      <div class="insta-grid" id="insta-grid-gcc">
+        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DYbIS_cReGL/" data-instgrm-version="14" style="margin:0;width:100%;"></blockquote>
+        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DYzO933vUYZ/" data-instgrm-version="14" style="margin:0;width:100%;"></blockquote>
+        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DY4YMoGMbaS/" data-instgrm-version="14" style="margin:0;width:100%;"></blockquote>
+      </div>
+    </div>
   </a>
 
-  <!-- ここに次のお店を追加 -->
+  <div class="shop-card">
+    <span class="shop-tag">Glass Accessory</span>
+    <p class="shop-name">sumiglass_kyoto</p>
+    <p class="shop-desc">ガラスを溶かして作成しています。ガラスアクセサリー💎.*やガラス雑貨を作成しています。オーダーのお問い合わせはDMで承ります😊</p>
+    <a href="https://www.instagram.com/sumiglass_kyoto/" target="_blank" class="shop-url">instagram.com/sumiglass_kyoto</a>
+    <div class="insta-toggle" style="margin-top:1rem; border-top:1px solid var(--border); padding-top:1rem;">
+      <button class="insta-toggle-btn" onclick="toggleInstaGlass(this, event)">
+        📸 Instagramはこちらから <span class="arrow">▼</span>
+      </button>
+      <div class="insta-grid" id="insta-grid-glass">
+        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DOFj8uBiUTl/" data-instgrm-version="14" style="margin:0;width:100%;"></blockquote>
+      </div>
+    </div>
+    <a href="https://www.youtube.com/watch?v=i4_gcfkKseo" target="_blank" class="yt-btn">
+      ▶ YouTubeはこちらから
+    </a>
+  </div>
 
-
-  <!-- ========== 動画・YouTube ========== -->
   <p class="section-title">🎬 動画・YouTube</p>
-
   <div class="coming-soon">
     <p>動画・YouTube は準備中です。<br>もうすぐ掲載します😊</p>
   </div>
-
-  <!-- YouTube を追加するときはここに↓のようなコードを貼る -->
-  <!--
-  <div class="video-card">
-    <div class="video-wrap">
-      <iframe src="https://www.youtube.com/embed/動画ID" allowfullscreen></iframe>
-    </div>
-    <div class="video-info">
-      <p class="video-title">動画タイトル</p>
-      <p class="video-desc">動画の説明文</p>
-    </div>
-  </div>
-  -->
-
 </div>
 
 <footer>
@@ -172,5 +114,31 @@ footer a { color: #81d4fa; text-decoration: none; }
   <p style="margin-top:0.8rem;">&copy; 2026 つながるLab・marippe</p>
 </footer>
 
+<script>
+function toggleInsta(btn, e) {
+  e.preventDefault(); e.stopPropagation();
+  btn.classList.toggle('open');
+  var grid = document.getElementById('insta-grid-gcc');
+  grid.classList.toggle('open');
+  if (grid.classList.contains('open') && !window._instaLoaded) {
+    window._instaLoaded = true;
+    var s = document.createElement('script');
+    s.src = 'https://www.instagram.com/embed.js';
+    s.async = true;
+    document.body.appendChild(s);
+  } else if (window.instgrm) { window.instgrm.Embeds.process(); }
+}
+function toggleInstaGlass(btn, e) {
+  e.preventDefault(); e.stopPropagation();
+  btn.classList.toggle('open');
+  var grid = document.getElementById('insta-grid-glass');
+  grid.classList.toggle('open');
+  if (grid.classList.contains('open') && !window._instaLoadedGlass) {
+    window._instaLoadedGlass = true;
+    if (window.instgrm) { window.instgrm.Embeds.process(); }
+    else { var s = document.createElement('script'); s.src = 'https://www.instagram.com/embed.js'; s.async = true; document.body.appendChild(s); }
+  } else if (window.instgrm) { window.instgrm.Embeds.process(); }
+}
+</script>
 </body>
 </html>

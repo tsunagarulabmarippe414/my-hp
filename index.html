@@ -195,7 +195,9 @@ section { padding: 80px 5%; position: relative; }
   box-shadow: 0 4px 24px rgba(0,80,140,0.08);
   transition: transform 0.2s, box-shadow 0.2s;
 }
-.act-card:hover { transform: translateY(-6px); box-shadow: 0 16px 48px rgba(0,80,140,0.15); }
+@media (hover: hover) {
+  .act-card:hover { transform: translateY(-6px); box-shadow: 0 16px 48px rgba(0,80,140,0.15); }
+}
 .act-thumb {
   height: 140px; display: flex; align-items: center;
   justify-content: center; font-size: 3.8rem;
@@ -408,9 +410,6 @@ footer a { color: #81d4fa; text-decoration: none; }
 
   <div class="intro-card">
     <div class="intro-msg">
-      <p>こんにちは😊</p>
-      <br>
-      <p>最近、</p>
       <span class="quote">
         「別々にいても、どこかでつながっていたいな」
       </span>
@@ -418,13 +417,20 @@ footer a { color: #81d4fa; text-decoration: none; }
       <br>
       <p>小さなコミュニティ<strong>「つながるLab」</strong>を始めてみようと思っています🐚</p>
       <br>
-      <p>人と人がゆるくつながれる場所を目指しています😊</p>
+      <p>つながるLabは、人と人がゆるくつながれる場所を目指しています😊<br>
+      人と人をつなぎながら、好きなことを楽しむ場を作っています🌿</p>
       <br>
-      <p>お仕事のこと、好きなこと、やってみたいこと、地域のこと、日常のことなど気軽に話せるコミュニティです✨</p>
+      <p>いるだけでもいいし、好きなことや挑戦したいことを応援し合える場所🌿<br>
+      お仕事のこと、趣味のこと、これからやってみたいこと。<br>
+      気軽に話せるコミュニティです✨</p>
       <br>
-      <p>無理なく、自分のペースで。<br>オンラインでも、リアルでも、無理なく参加できる感じです✨</p>
+      <p>一緒に考えたり、応援し合ったりできる場所にもなればいいな😊<br>
+      ランチ会や交流会、体験会なども開催予定です✨</p>
       <br>
-      <p>まずはLINEグループからゆるく始めてみます😊<br>興味ある方いたら、気軽に連絡ください✨</p>
+      <p>まずはLINEグループからゆるく始めてみます😊<br>
+      興味ある方いたら、気軽に連絡ください✨</p>
+      <br>
+      <p>一人じゃないよ。いつでもきてね🌿</p>
     </div>
     <div class="intro-name">
       <strong>marippe</strong><br>
@@ -446,19 +452,16 @@ footer a { color: #81d4fa; text-decoration: none; }
 
   <div class="act-grid">
     <div class="act-card">
-      <div class="act-thumb t1">💬</div>
+      <div class="act-thumb t1">💬🍽️🎉</div>
       <div class="act-body">
-        <p class="act-tag">Community</p>
-        <h3>LINEグループでつながる</h3>
-        <p>まずはLINEグループから。日常のことを気軽に投稿して、ゆるくつながりましょう。</p>
-      </div>
-    </div>
-    <div class="act-card">
-      <div class="act-thumb t2">🍽️</div>
-      <div class="act-body">
-        <p class="act-tag">Lunch & Meet</p>
-        <h3>ランチ会・交流会</h3>
-        <p>つながるLabのメンバーが運営するお店でランチ会や交流会を開催。食べながら自然とつながれます。</p>
+        <p class="act-tag">Community & Events</p>
+        <h3>LINEグループ・ランチ会・イベント</h3>
+        <p>まずはLINEグループからゆるくつながり、ランチ会や交流イベントでリアルにも集まりましょう！食べながら自然とつながれます😊</p>
+        <div style="margin-top:1rem;">
+          <a href="lunch-calendar3.png" target="_blank" style="display:inline-flex;align-items:center;gap:0.5rem;background:linear-gradient(135deg,#29b6f6,#0288d1);color:#fff;font-size:0.85rem;font-weight:700;padding:0.55em 1.4em;border-radius:100px;text-decoration:none;">
+            🗓️ イベントカレンダーはこちらから →
+          </a>
+        </div>
       </div>
     </div>
     <div class="act-card">
@@ -476,14 +479,6 @@ footer a { color: #81d4fa; text-decoration: none; }
         <p class="act-tag">PR Video</p>
         <h3>PR動画紹介</h3>
         <p>お店や活動のPR動画を制作・紹介。見た人がファンになる、そんなつながりを作ります。</p>
-      </div>
-    </div>
-    <div class="act-card">
-      <div class="act-thumb t5">🎉</div>
-      <div class="act-body">
-        <p class="act-tag">Event</p>
-        <h3>イベント</h3>
-        <p>みんなで集まって楽しむイベントをどんどん開催予定。内容はお楽しみ😊</p>
       </div>
     </div>
   </div>
@@ -592,6 +587,7 @@ footer a { color: #81d4fa; text-decoration: none; }
         <p class="act-tag">Web Design</p>
         <h3>ホームページ制作</h3>
         <p>個人・お店・コミュニティのホームページをお作りします。まずはお気軽にご相談ください。</p>
+        <a href="https://tsunagarulabmarippe414.github.io/hp-samples/" target="_blank" class="act-shop-link">サンプルを見る →</a>
       </div>
     </div>
     <div class="act-card">
@@ -644,5 +640,18 @@ footer a { color: #81d4fa; text-decoration: none; }
   <p style="margin-top:1rem;">&copy; 2026 つながるLab・marippe</p>
 </footer>
 
+<script>
+function toggleCalendar(btn) {
+  var img = document.getElementById('cal-img');
+  var arrow = btn.querySelector('.cal-arrow');
+  if (img.style.display === 'none') {
+    img.style.display = 'block';
+    arrow.style.transform = 'rotate(180deg)';
+  } else {
+    img.style.display = 'none';
+    arrow.style.transform = 'rotate(0deg)';
+  }
+}
+</script>
 </body>
 </html>
