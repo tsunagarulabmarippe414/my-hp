@@ -457,9 +457,12 @@ footer a { color: #81d4fa; text-decoration: none; }
         <p class="act-tag">Community & Events</p>
         <h3>LINEグループ・ランチ会・イベント</h3>
         <p>まずはLINEグループからゆるくつながり、ランチ会や交流イベントでリアルにも集まりましょう！食べながら自然とつながれます😊</p>
-        <div style="margin-top:1rem;">
+        <div style="margin-top:1rem;display:flex;flex-wrap:wrap;gap:0.6rem;">
           <a href="lunch-calendar3.png" target="_blank" style="display:inline-flex;align-items:center;gap:0.5rem;background:linear-gradient(135deg,#29b6f6,#0288d1);color:#fff;font-size:0.85rem;font-weight:700;padding:0.55em 1.4em;border-radius:100px;text-decoration:none;">
-            🗓️ イベントカレンダーはこちらから →
+            🗓️ ６月カレンダー →
+          </a>
+          <a href="lunch-calendar-july.png" target="_blank" style="display:inline-flex;align-items:center;gap:0.5rem;background:linear-gradient(135deg,#29b6f6,#0288d1);color:#fff;font-size:0.85rem;font-weight:700;padding:0.55em 1.4em;border-radius:100px;text-decoration:none;">
+            🗓️ ７月カレンダー →
           </a>
         </div>
       </div>
@@ -482,6 +485,26 @@ footer a { color: #81d4fa; text-decoration: none; }
       </div>
     </div>
   </div>
+
+  <!-- YouTube動画 -->
+  <div style="max-width:960px;margin:2.5rem auto 0;">
+    <p class="sec-label" style="margin-bottom:0.8rem;">YouTube</p>
+    <h3 style="text-align:center;font-size:1rem;font-weight:900;color:var(--dark);margin-bottom:1.2rem;">marippe の動画編集作品🎬</h3>
+    <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:20px;box-shadow:0 4px 24px rgba(0,80,140,0.12);">
+      <iframe
+        src="https://www.youtube.com/embed/videoseries?list=UUuaJJFKyRVfihShEGWwAbHw"
+        style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;border-radius:20px;"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+        loading="lazy"
+        title="つながるLab・marippe YouTubeチャンネル">
+      </iframe>
+    </div>
+    <div style="text-align:center;margin-top:1rem;">
+      <a href="https://www.youtube.com/@tsunagarulab_marippe414" target="_blank" class="act-shop-link">▶ YouTubeチャンネルを見る →</a>
+    </div>
+  </div>
+
 </section>
 
 <!-- STYLE -->
@@ -526,7 +549,29 @@ footer a { color: #81d4fa; text-decoration: none; }
   <p class="sec-label">Voice</p>
   <h2 class="sec-title">参加してくれた方の声😊</h2>
   <div class="divider"></div>
-  <p class="sec-sub" style="margin-top:0;">準備中です。もうすぐ掲載します😊</p>
+  <p class="sec-sub" style="margin-top:0;">イベントをクリックすると感想が見られます✨</p>
+
+  <div style="max-width:700px;margin:0 auto;display:flex;flex-direction:column;gap:1rem;">
+
+    <!-- 第1回ランチ会 -->
+    <div style="border-radius:20px;overflow:hidden;box-shadow:0 4px 24px rgba(0,80,140,0.08);border:2px solid var(--border);">
+      <button onclick="toggleVoice(this)" style="width:100%;background:#fff;border:none;cursor:pointer;padding:1.2rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;text-align:left;">
+        <div>
+          <p style="font-size:0.75rem;font-weight:900;letter-spacing:0.12em;color:var(--sky);margin-bottom:0.25rem;">2026年6月14日 11:30〜13:30</p>
+          <p style="font-size:1rem;font-weight:900;color:var(--dark);">🍽️ 第1回ランチ会　４名参加</p>
+        </div>
+        <span style="font-size:1.2rem;color:var(--sky);transition:transform 0.3s;flex-shrink:0;" class="voice-arrow">▼</span>
+      </button>
+      <div class="voice-panel" style="display:none;background:var(--foam);padding:1.2rem 1.5rem;border-top:1px solid var(--border);">
+        <div style="display:flex;flex-direction:column;gap:0.9rem;">
+          <div style="background:#fff;border-radius:14px;padding:1rem 1.2rem;border-left:4px solid var(--sky);">
+            <p style="font-size:0.9rem;line-height:1.9;color:var(--text);">① 初対面の方でも、気軽におしゃべりできて、楽しかったです😊</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
 </section>
 
 <!-- JOIN -->
@@ -649,6 +694,18 @@ function toggleCalendar(btn) {
     arrow.style.transform = 'rotate(180deg)';
   } else {
     img.style.display = 'none';
+    arrow.style.transform = 'rotate(0deg)';
+  }
+}
+
+function toggleVoice(btn) {
+  var panel = btn.nextElementSibling;
+  var arrow = btn.querySelector('.voice-arrow');
+  if (panel.style.display === 'none') {
+    panel.style.display = 'block';
+    arrow.style.transform = 'rotate(180deg)';
+  } else {
+    panel.style.display = 'none';
     arrow.style.transform = 'rotate(0deg)';
   }
 }
